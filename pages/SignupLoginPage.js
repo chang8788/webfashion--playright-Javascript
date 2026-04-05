@@ -47,6 +47,12 @@ class SignupLoginPage {
   async clickLogin() {
     await this.loginBtn.click();
   }
+
+  async verifyLoginErrorIsVisible() {
+    // The exact text is "Your email or password is incorrect!"
+    const errorLocator = this.page.locator('form[action="/login"] p').filter({ hasText: 'Your email or password is incorrect!' });
+    await expect(errorLocator).toBeVisible();
+  }
 }
 
 module.exports = { SignupLoginPage };
